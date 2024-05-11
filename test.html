@@ -1,0 +1,99 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content= 
+        "width=device-width, initial-scale=1.0"> 
+  
+    <title> 
+        How to toggle between one checkbox  
+        and a whole group of checkboxes? 
+    </title> 
+    <style>
+        body { 
+            text-align: center; 
+            margin-top: 10%; 
+        } 
+        
+        h1 { 
+            color: green; 
+        } 
+        
+        p { 
+            margin-top: 4%; 
+        } 
+        
+        label { 
+            margin-left: 3%; 
+        }
+    </style>
+</head> 
+  
+<body> 
+    <h1>GeeksforGeeks</h1> 
+  
+    <h4> 
+        How to toggle between one checkbox  
+        and a whole group of checkboxes? 
+    </h4> 
+  
+    <p> 
+        <label for="one"><input type="checkbox"
+            name="group" id="one" />First 
+        </label> 
+          
+        <label for="two"><input type="checkbox"
+            name="group" id="two" />Second 
+        </label> 
+          
+        <label for="three"><input type="checkbox"
+            name="group" id="three" />Third 
+        </label> 
+    </p> 
+  
+  
+    <p> 
+        <label for="sep"><input type="checkbox"
+            name="sep" id="sep" />Separate 
+        </label> 
+    </p> 
+
+    <script>
+        // Returns an array of all the  
+        // checkboxes in the group 
+        let groupCheck = Array.from( 
+            document.getElementsByName('group')) 
+            
+            console.log(groupCheck.length)
+            console.log(groupCheck[0])
+        // Returns the separate checkbox 
+        let sepCheck = document.getElementById('sep') 
+        
+        groupCheck.forEach(element => { 
+        
+            // Setting onChange event for every 
+            // checkbox in the group 
+            element.onchange = () => { 
+                if (element.checked) { 
+        
+                    // Unchecking the checkbox 
+                    sepCheck.checked = false; 
+                } 
+            } 
+        }) 
+        
+        // Setting onChange event for the 
+        // separate checkbox  
+        sepCheck.onchange = () => { 
+            if (sepCheck.checked) { 
+                groupCheck.forEach(element => { 
+        
+                    // Unchecking the checkbox 
+                    element.checked = false;  
+                }) 
+            } 
+        } 
+    </script>
+</body> 
+</html>
